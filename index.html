@@ -193,11 +193,8 @@
   .af input:focus,.af textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
   .af button{align-self:flex-start;border:0;background:var(--accent);color:#fff;font-family:inherit;
              font-size:17px;font-weight:700;padding:13px 28px;border-radius:4px;cursor:pointer}
-  .af button[disabled]{opacity:.6;cursor:progress}
-  .af .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-  .fmsg{margin-top:14px;font-size:17px;font-weight:700;letter-spacing:-.01em}
-  .fmsg.ok{color:#1E7A4B}
-  .fmsg.ko{color:#C0392B}
+  .af .hp{position:absolute;left:-9999px}
+  .fmsg{margin-top:14px;font-size:17px;font-weight:700;color:var(--accent)}
 
   .close{margin-top:60px;background:var(--tint);border:1px solid var(--tint-line);
          border-radius:8px;padding:44px}
@@ -464,7 +461,7 @@
         <div class="qc" id="q3">
           <h3>Une autre question ?</h3>
           <p>Ton sport, ton club, ton niveau : écris-nous, on te répond.</p>
-          <form class="af" id="afForm">
+          <form class="af">
             <div class="row">
               <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom">
               <input type="text" name="nom" placeholder="Nom" aria-label="Nom">
@@ -477,7 +474,7 @@
             <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button type="submit">Envoyer</button>
           </form>
-          <p class="fmsg" id="afMsg" role="status" aria-live="polite" hidden></p>
+          <p class="fmsg" aria-live="polite" hidden></p>
         </div>
       </div>
     </div>
@@ -536,63 +533,35 @@
   }
 
   (function(){
-    var form=document.getElementById('afForm');
+    var form=document.querySelector('.af');
     if(!form) return;
-    var msg=document.getElementById('afMsg');
+    var msg=document.querySelector('.fmsg');
     var btn=form.querySelector('button[type=submit]');
     var label=btn.textContent;
-
-    function say(text,cls){
-      msg.textContent=text;
-      msg.className='fmsg '+cls;
-      msg.hidden=false;
-    }
-    function val(name){
-      var el=form.elements[name];
-      return el&&el.value?el.value.trim():'';
-    }
 
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(btn.disabled) return;
-
-      var data={
-        prenom:val('prenom'), nom:val('nom'), sport:val('sport'),
-        club:val('club'), message:val('message'), website:val('website')
-      };
-
-      if(!data.prenom||!data.nom||!data.sport||!data.club||!data.message){
-        say('Merci de remplir tous les champs.','ko');
-        return;
-      }
-      if(data.message.length<10){
-        say('Ta question est un peu courte : 10 caractères minimum.','ko');
-        return;
-      }
-      if(data.message.length>2000){
-        say('Ta question est trop longue : 2000 caractères maximum.','ko');
-        return;
-      }
-
       msg.hidden=true;
       btn.disabled=true;
       btn.textContent='Envoi…';
+
+      var data={};
+      var f=['prenom','nom','sport','club','message','website'];
+      for(var k=0;k<f.length;k++) data[f[k]]=form.elements[f[k]].value.trim();
 
       fetch('/api/contact',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(data)
       }).then(function(r){
-        return r.json().catch(function(){ return {}; }).then(function(body){
-          if(!r.ok||!body.ok) throw new Error(body.error||'error');
-          return body;
-        });
-      }).then(function(){
+        if(!r.ok) throw new Error(r.status);
         form.reset();
-        say('Message envoyé. On te répond très vite.','ok');
+        msg.textContent='Message envoyé, on te répond.';
       }).catch(function(){
-        say('L’envoi a échoué. Réessaie, ou écris-nous directement.','ko');
+        msg.textContent='L’envoi n’a pas abouti. Vérifie tes champs et réessaie.';
       }).then(function(){
+        msg.hidden=false;
         btn.disabled=false;
         btn.textContent=label;
       });
