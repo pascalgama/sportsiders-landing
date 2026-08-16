@@ -31,6 +31,11 @@ function clean(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+// Un sujet d'email ne doit contenir ni retour à la ligne ni caractère de contrôle.
+function subjectSafe(value) {
+  return value.replace(/[\r\n\t]+/g, ' ').replace(/\s{2,}/g, ' ').slice(0, 120);
+}
+
 function row(label, value) {
   return `
           <tr>
@@ -147,7 +152,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         from,
         to: [to],
-        subject: `Landing — question de ${data.prenom} ${data.nom} (${data.club})`,
+        subject: subjectSafe(`Landing — question de ${data.prenom} ${data.nom} (${data.club})`),
         html: buildHtml(data),
         text: buildText(data)
       })
