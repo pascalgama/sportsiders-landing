@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sportsiders — Ton potentiel, ton équipe, ton club</title>
+<meta name="description" content="Rendre la progression sportive visible et accessible à chaque joueur, quel que soit son niveau de jeu. Défis, Player Score et classements. Gratuit pour tous.">
+<link rel="canonical" href="https://www.sportsiders.app/">
+<meta name="theme-color" content="#E8590C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sportsiders">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://www.sportsiders.app/">
+<meta property="og:title" content="Sportsiders — Ton potentiel, ton équipe, ton club">
+<meta property="og:description" content="Rendre la progression sportive visible et accessible à chaque joueur, quel que soit son niveau de jeu. Gratuit pour tous.">
+<meta property="og:image" content="https://www.sportsiders.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sportsiders — la plateforme de pédagogie sportive">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sportsiders — Ton potentiel, ton équipe, ton club">
+<meta name="twitter:description" content="Rendre la progression sportive visible et accessible à chaque joueur, quel que soit son niveau de jeu. Gratuit pour tous.">
+<meta name="twitter:image" content="https://www.sportsiders.app/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0F1319;--soft:#3A4252;--mute:#7A8496;--paper:#FBFBFC;
+        --line:#E4E6EB;--accent:#E8590C;--tint:#FFF1E8;--tint-line:#F7D5BE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--paper);
+       color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;font-size:18px}
+  .wrap{max-width:1140px;margin:0 auto;padding:44px 40px 40px;text-align:center}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;
+        text-transform:uppercase;font-weight:500}
+
+  header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+         padding-bottom:14px;border-bottom:1.5px solid var(--ink);text-align:left}
+  .logo{font-size:24px;font-weight:800;letter-spacing:-.03em}
+  .logo span{color:var(--accent)}
+  .pc .sport{position:absolute;right:20px;top:20px;white-space:nowrap;z-index:2;display:inline-flex;
+             align-items:center;gap:6px;background:rgba(255,255,255,.92);color:#2C4E9B;
+             border-radius:100px;padding:6px 13px;font-size:13px;font-weight:700;
+             letter-spacing:-.01em;box-shadow:0 3px 10px -3px rgba(15,19,25,.3)}
+  .pc .sport svg{width:15px;height:15px;stroke:#2C4E9B;fill:none;stroke-width:2}
+
+  /* HERO */
+  .hero{padding:56px 0 46px}
+  .hero h1{font-size:clamp(30px,5.4vw,62px);font-weight:800;letter-spacing:-.042em;
+           line-height:1.05;max-width:19ch;margin:0 auto}
+  .hero h1 .roll{position:relative;display:inline-block;color:var(--accent);white-space:nowrap}
+  .hero h1 .roll .sizer{visibility:hidden}
+  .hero h1 .roll .w{position:absolute;left:0;top:0;opacity:0;animation:fade 10s infinite}
+  .hero h1 .roll .w2{animation-delay:2.5s}
+  .hero h1 .roll .w3{animation-delay:5s}
+  .hero h1 .roll .w4{animation-delay:7.5s}
+  @keyframes fade{0%{opacity:0}1.5%,23%{opacity:1}25%,100%{opacity:0}}
+  @media(prefers-reduced-motion:reduce){.hero h1 .roll .w{animation:none}.hero h1 .roll .w1{opacity:1}}
+  .hero .sub{margin:22px auto 0;font-size:clamp(18px,2.4vw,22px);color:var(--soft);font-weight:500;max-width:46ch}
+  .ctas{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta2{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--ink);
+        border:1.5px solid var(--ink);font-size:19px;font-weight:700;padding:16px 30px;
+        border-radius:4px;text-decoration:none;letter-spacing:-.01em}
+  .cta2 svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:2}
+  .hero .cta{margin-top:0;display:inline-flex;align-items:center;gap:10px;
+             background:var(--accent);color:#fff;font-size:19px;font-weight:700;
+             padding:16px 30px;border-radius:4px;text-decoration:none;letter-spacing:-.01em}
+
+  /* CARTE JOUEUR */
+  .deck{position:relative;width:420px;margin:44px auto 0}
+  .deck .pc{aspect-ratio:auto}
+  .deck .side{position:absolute;top:24px;width:86%;transform-origin:50% 50%}
+  .deck .s1{left:-32%;transform:rotate(-8deg) scale(.94)}
+  .deck .s2{right:-32%;transform:rotate(8deg) scale(.94)}
+  .deck .side .pc{box-shadow:0 18px 40px -20px rgba(15,19,25,.4)}
+  .deck .side .top{padding:16px 18px 14px}
+  .deck .side .num{font-size:56px;margin-top:12px}
+  .deck .side .num i{font-size:30px}
+  .deck .side .nm{font-size:24px}
+  .deck .side .meta{font-size:14px}
+  .deck .side .k b{font-size:21px}
+  .deck .side .crest{width:40px;height:47px}
+  .deck .side .sport{right:16px;top:16px;padding:5px 11px;font-size:12px}
+  .deck .s2 .sport{color:#B4400A}
+  .deck .s2 .sport svg{stroke:#B4400A}
+  .pc{position:relative;width:100%;border-radius:24px;overflow:hidden;
+      background:#fff;box-shadow:0 30px 60px -24px rgba(15,19,25,.5);
+      display:flex;flex-direction:column;text-align:left}
+  .pc .top{background:#4C7DF0;padding:20px 22px 18px;position:relative;overflow:hidden;flex:1.05}
+  .pc .ball{position:absolute;right:-46px;top:-24px;width:210px;height:210px;opacity:.16}
+  .pc .crest{width:50px;height:58px;position:relative;z-index:1}
+  .pc .num{margin-top:16px;font-size:74px;font-weight:800;color:#fff;line-height:.84;
+           letter-spacing:-.05em;position:relative;z-index:1}
+  .pc .num i{font-style:normal;font-size:40px;color:rgba(255,255,255,.5);
+             vertical-align:top;margin-right:2px}
+  .pc .cat{position:absolute;right:22px;bottom:18px;text-align:right;z-index:1;
+           font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+  .pc .cat span{display:block;font-size:13px;color:rgba(255,255,255,.72);font-weight:500}
+  .pc .cat b{display:block;font-size:17px;color:#fff;font-weight:700;margin-top:3px}
+  .pc .bot{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .pc .nmrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .pc .nm{font-size:32px;font-weight:800;letter-spacing:-.035em;line-height:1}
+  .pc .meta{margin-top:7px;font-size:17px;color:var(--mute);font-weight:500}
+  .pc .badges{display:flex;gap:8px;flex:none}
+  .pc .bdg{width:38px;height:44px;filter:drop-shadow(0 3px 7px rgba(15,19,25,.3));position:relative}
+  .pc .bdg .hex{position:absolute;inset:0;width:100%;height:100%}
+  .pc .bdg .gl{position:absolute;inset:0;display:grid;place-items:center}
+  .pc .bdg .gl svg{width:17px;height:17px}
+  .pc .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+  .pc .k{background:#F4F5F7;border-radius:13px;padding:14px 8px;text-align:center}
+  .pc .k b{display:block;font-size:27px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .pc .k span{display:block;margin-top:6px;font-family:'IBM Plex Mono',monospace;
+              font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+              color:var(--mute);font-weight:500}
+
+  /* BANDEAU */
+  .band{background:var(--ink);color:#fff;border-radius:8px;padding:44px 44px;
+        position:relative;overflow:hidden;margin-top:56px}
+  .band h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.035em;
+           line-height:1.16;margin:0;position:relative}
+  .band p{margin:18px auto 0;font-size:19px;color:#E6E9EE;font-weight:500;
+          line-height:1.55;max-width:70ch;position:relative}
+  .band:after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+              border-radius:50%;background:radial-gradient(circle,rgba(232,89,12,.3),transparent 68%)}
+
+  /* SECTIONS */
+  .sec{padding:60px 0 0}
+  h2.t{font-size:clamp(28px,3.4vw,38px);font-weight:800;letter-spacing:-.035em;margin-bottom:14px}
+  .lead{font-size:19px;color:var(--mute);font-weight:500;max-width:56ch;margin:0 auto 30px}
+
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:32px 26px 34px}
+  .ico{width:52px;height:52px;border-radius:13px;background:var(--tint);
+       display:grid;place-items:center;margin:0 auto 18px}
+  .ico svg{width:25px;height:25px;stroke:var(--accent);fill:none;
+           stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .card b{display:block;font-size:22px;font-weight:800;letter-spacing:-.025em;margin-bottom:9px}
+  .card p{font-size:17px;color:var(--soft);font-weight:500}
+
+  /* PARCOURS DE VALIDATION */
+  .path{position:relative;padding:10px 0 0}
+  .path .line{position:absolute;left:8%;right:8%;top:40px;height:3px;
+              background:linear-gradient(90deg,var(--tint-line),var(--accent));border-radius:2px}
+  .path .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative}
+  .st{text-align:center;background:none;border:0;font-family:inherit;cursor:pointer;padding:0}
+  .st .dot{width:68px;height:68px;border-radius:50%;background:#fff;border:3px solid var(--tint-line);
+           display:grid;place-items:center;margin:8px auto 12px;position:relative;z-index:1;transition:.18s}
+  .st .dot svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.9;
+               stroke-linecap:round;stroke-linejoin:round;transition:.18s}
+  .st b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.25;
+        color:var(--mute);transition:.18s}
+  .st:hover .dot{border-color:var(--accent)}
+  .st.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.08)}
+  .st.on .dot svg{stroke:#fff}
+  .st.on b{color:var(--ink)}
+  .panel{margin-top:28px;background:var(--ink);color:#fff;border-radius:10px;
+         padding:34px 38px;min-height:130px;display:flex;flex-direction:column;
+         align-items:center;justify-content:center}
+  .panel h3{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
+  .panel p{font-size:19px;color:#E6E9EE;font-weight:500;line-height:1.5;max-width:62ch;margin:0}
+
+  /* PERSONAS */
+  .who{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .who .p{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+  .who .ph{aspect-ratio:4/3;background:#EDEFF2;position:relative;overflow:hidden}
+  .who .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .who .tx{padding:20px 18px 22px}
+  .who b{display:block;font-size:19px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+
+  /* FAQ ONGLETS */
+  .qa{display:grid;grid-template-columns:300px 1fr;gap:14px;text-align:left}
+  .tabs{display:flex;flex-direction:column;gap:8px}
+  .tb{border:1px solid var(--line);background:#fff;border-radius:8px;padding:16px 18px;
+      font-family:inherit;font-size:17px;font-weight:700;color:var(--soft);cursor:pointer;
+      text-align:left;letter-spacing:-.015em;transition:.16s;line-height:1.3}
+  .tb:hover{border-color:var(--accent)}
+  .tb.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .qp{border:1px solid var(--line);border-radius:10px;background:#fff;padding:30px 32px}
+  .qc{display:none}
+  .qc.on{display:block}
+  .qc h3{font-size:22px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+  .qc p{font-size:19px;color:var(--soft);font-weight:500;line-height:1.5}
+  .af{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+  .af .row{display:flex;gap:10px}
+  .af input,.af textarea{flex:1;min-width:0;border:1px solid var(--line);border-radius:4px;
+        padding:13px 15px;font-family:inherit;font-size:17px;color:var(--ink);
+        background:var(--paper);resize:vertical}
+  .af input::placeholder,.af textarea::placeholder{color:var(--mute)}
+  .af input:focus,.af textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .af button{align-self:flex-start;border:0;background:var(--accent);color:#fff;font-family:inherit;
+             font-size:17px;font-weight:700;padding:13px 28px;border-radius:4px;cursor:pointer}
+
+  .close{margin-top:60px;background:var(--tint);border:1px solid var(--tint-line);
+         border-radius:8px;padding:44px}
+  .close p{font-size:clamp(26px,3.2vw,34px);font-weight:800;letter-spacing:-.035em;
+           line-height:1.2;max-width:22ch;margin:0 auto 24px}
+  .close .go{background:var(--accent);color:#fff;font-size:19px;font-weight:700;
+             padding:16px 32px;border-radius:4px;text-decoration:none;display:inline-block}
+  .close .ctas{margin-top:0}
+  .close .cta2{background:transparent}
+
+  footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);
+         display:flex;justify-content:space-between;gap:20px;
+         color:var(--mute);font-size:15px;font-weight:500;flex-wrap:wrap;text-align:left}
+
+  @media(max-width:900px){
+    .wrap{padding:28px 20px}
+    .three{grid-template-columns:1fr}
+    .who{grid-template-columns:repeat(2,1fr)}
+    .af .row{flex-direction:column}
+    .tb{font-size:15px;padding:13px 16px}
+    .path .steps{grid-template-columns:repeat(3,1fr);gap:14px}
+    .path .line{display:none}
+    .st .dot{width:56px;height:56px}
+    .st b{font-size:15px}
+    .panel{padding:24px 20px}
+    .deck{width:100%;max-width:400px}
+    .deck .side{display:none}
+    .band,.close{padding:28px 22px}
+    .hero{padding:36px 0 34px}
+    .sec{padding:44px 0 0}
+  }
+
+  @media(max-width:560px){
+    header .mono{display:none}
+    .hero h1{max-width:none}
+    .hero .sub{font-size:17px;max-width:none}
+    .ctas{flex-direction:column;align-items:stretch;gap:10px}
+    .ctas a{justify-content:center;width:100%;font-size:17px;padding:15px 20px}
+    .who{grid-template-columns:1fr}
+    .path .steps{grid-template-columns:repeat(2,1fr);gap:18px}
+    .st .dot{width:52px;height:52px;margin-bottom:9px}
+    .st .dot svg{width:24px;height:24px}
+    .st b{font-size:14.5px}
+    .panel{padding:20px 18px;min-height:0}
+    .panel h3{font-size:20px}
+    .panel p{font-size:17px}
+    .card{padding:24px 20px 26px}
+    .card b{font-size:19px}
+    .card p{font-size:16px}
+    .qp{padding:22px 20px}
+    .qc h3{font-size:19px}
+    .qc p{font-size:17px}
+    .close p{margin-bottom:20px}
+    .deck{max-width:100%}
+    .pc .num{font-size:60px}
+    .pc .nm{font-size:26px}
+    .pc .k b{font-size:22px}
+  }
+  @media print{body{background:#fff}.wrap{padding:0}
+    .band,.close,.ico,.pc,.deck .side{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">Sport<span>siders</span></div>
+    <span class="mono">Plateforme de pédagogie sportive</span>
+  </header>
+
+  <section class="hero">
+    <h1>La plateforme gratuite qui fait progresser <span class="roll"><span class="sizer">ton potentiel</span><span class="w w1">ton potentiel</span><span class="w w2">tes amis</span><span class="w w3">ton équipe</span><span class="w w4">ton club</span></span></h1>
+    <p class="sub">Rendre la progression sportive visible et accessible à chaque joueur, quel que soit son niveau de jeu.</p>
+    <div class="ctas">
+      <a class="cta" href="https://pro.sportsiders.app/" target="_blank" rel="noopener">Trouve ton équipe
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="cta2" href="https://sportsiders-pro-demo.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.4"/><path d="M10 8.6l6 3.4-6 3.4z"/></svg>
+        Voir la démo
+      </a>
+    </div>
+
+    <div class="deck">
+      <div class="side s1">
+        <div class="pc">
+          <div class="top" style="background:#2FA867">
+            <svg class="ball" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3">
+              <circle cx="50" cy="50" r="46"/><path d="M50 4v92M4 50h92"/>
+              <path d="M18 18c18 16 18 48 0 64M82 18c-18 16-18 48 0 64"/>
+            </svg>
+            <svg class="crest" viewBox="0 0 44 52"><path d="M2 4h40v28c0 10-9 15-20 18C11 47 2 42 2 32z" fill="#14432C"/><path d="M5 7h34v25c0 8.4-7.6 12.8-17 15.4C12.6 44.8 5 40.4 5 32z" fill="#A8E6C4"/><circle cx="22" cy="24" r="9" fill="#F2E14C"/></svg>
+            <div class="num"><i>#</i>12</div>
+            <div class="cat"><span>U15 F</span><b>Meneuse</b></div>
+          </div>
+          <div class="bot">
+            <div class="nmrow"><div><div class="nm">Alice Morin</div><div class="meta">1,68 m · 15 ans</div></div></div>
+            <div class="kpis">
+              <div class="k"><b>21</b><span>Matchs</span></div>
+              <div class="k"><b>19'40"</b><span>Temps/m</span></div>
+              <div class="k"><b>9.6</b><span>Pts/m</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side s2">
+        <div class="pc">
+          <div class="top" style="background:#E8590C">
+            <svg class="ball" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3">
+              <circle cx="50" cy="50" r="46"/><path d="M50 4v92M4 50h92"/>
+              <path d="M18 18c18 16 18 48 0 64M82 18c-18 16-18 48 0 64"/>
+            </svg>
+            <span class="sport">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.6" ry="6.2" transform="rotate(-40 12 12)"/><path d="M8.6 15.4l6.8-6.8M10.6 11.2l2.2 2.2M12.6 9.2l2.2 2.2M8.6 13.2l2.2 2.2"/></svg>
+              Rugby
+            </span>
+            <svg class="crest" viewBox="0 0 44 52"><path d="M2 4h40v28c0 10-9 15-20 18C11 47 2 42 2 32z" fill="#5A2408"/><path d="M5 7h34v25c0 8.4-7.6 12.8-17 15.4C12.6 44.8 5 40.4 5 32z" fill="#FFD2B4"/><circle cx="22" cy="24" r="9" fill="#E8590C"/></svg>
+            <div class="num"><i>#</i>4</div>
+            <div class="cat"><span>U17 M</span><b>Demi de mêlée</b></div>
+          </div>
+          <div class="bot">
+            <div class="nmrow"><div><div class="nm">Yanis B.</div><div class="meta">1,94 m · 17 ans</div></div></div>
+            <div class="kpis">
+              <div class="k"><b>16</b><span>Matchs</span></div>
+              <div class="k"><b>22'10"</b><span>Temps/m</span></div>
+              <div class="k"><b>12.8</b><span>Pts/m</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pc">
+        <div class="top">
+          <svg class="ball" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3">
+            <circle cx="50" cy="50" r="46"/><path d="M50 4v92M4 50h92"/>
+            <path d="M18 18c18 16 18 48 0 64M82 18c-18 16-18 48 0 64"/>
+          </svg>
+          <span class="sport">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.4"/><path d="M12 2.6v18.8M2.6 12h18.8"/><path d="M5.4 5.4a13 13 0 0 1 0 13.2M18.6 5.4a13 13 0 0 0 0 13.2"/></svg>
+            Basket
+          </span>
+          <svg class="crest" viewBox="0 0 44 52" aria-label="Blason du club">
+            <path d="M2 4h40v28c0 10-9 15-20 18C11 47 2 42 2 32z" fill="#1D3A6B"/>
+            <path d="M5 7h34v25c0 8.4-7.6 12.8-17 15.4C12.6 44.8 5 40.4 5 32z" fill="#7ED3C4"/>
+            <circle cx="28" cy="24" r="8" fill="#F2E14C"/>
+            <path d="M12 16c5-3 10-1 12 3s1 9-3 11-9 1-11-3-2-9 2-11z" fill="#152238"/>
+            <text x="22" y="46" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="7" font-weight="800" fill="#152238">5</text>
+          </svg>
+          <div class="num"><i>#</i>7</div>
+          <div class="cat"><span>U15 M</span><b>Arrière</b></div>
+        </div>
+        <div class="bot">
+          <div class="nmrow">
+            <div>
+              <div class="nm">Léo Martin</div>
+              <div class="meta">1,78 m · 14 ans · Droitier</div>
+            </div>
+            <div class="badges">
+              <div class="bdg" title="Sniper">
+                <svg class="hex" viewBox="0 0 38 44"><path d="M19 0l19 11v22L19 44 0 33V11z" fill="#F5C518" stroke="#fff" stroke-width="2.4"/></svg>
+                <span class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="#5A3B00" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span>
+              </div>
+              <div class="bdg" title="Passeur">
+                <svg class="hex" viewBox="0 0 38 44"><path d="M19 0l19 11v22L19 44 0 33V11z" fill="#7A4DE0" stroke="#fff" stroke-width="2.4"/></svg>
+                <span class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s2-6 8-6 8 6 8 6"/><path d="M16 6l4 3-4 3"/></svg></span>
+              </div>
+            </div>
+          </div>
+          <div class="kpis">
+            <div class="k"><b>18</b><span>Matchs</span></div>
+            <div class="k"><b>24'30"</b><span>Temps/m</span></div>
+            <div class="k"><b>14.2</b><span>Pts/m</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <h2>Fini les saisons sans data,<br>les joueurs sans repères,<br>les conflits coach-parents…</h2>
+    <p>Tu t'entraînes, tu joues, tu relèves des défis.<br>Sportsiders enregistre chaque activité, calcule ton Player Score<br>et conserve ta progression saison après saison.</p>
+  </div>
+
+  <section class="sec">
+    <h2 class="t">Tout ce dont tu as besoin pour progresser</h2>
+    <div class="three">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.6"/><path d="M8 9h8M8 13h5"/><path d="M15.5 16.5l2 2 3.5-3.5"/></svg></div>
+        <b>Nos Siders,<br>pour révéler tes talents</b>
+        <p>Un Sider, c'est une compétence à valider. Technique, tactique, physique, mental : des défis à relever, une carte à remplir, des talents à découvrir.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 6-8"/><path d="M15 6h4v4"/></svg></div>
+        <b>Player Score,<br>le repère</b>
+        <p>Calculé en continu sur tes performances et tes progrès, il situe ton niveau réel parmi tous les joueurs de ta catégorie.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8.6"/><path d="M12 3.4v3M12 17.6v3M3.4 12h3M17.6 12h3"/></svg></div>
+        <b>Tes objectifs,<br>tes classements</b>
+        <p>Un seul score, plusieurs classements. Tu choisis où tu te compares : tes amis, ton équipe, ton club, ta ligue.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="t">Comment valider tes compétences</h2>
+    <p class="lead">Six façons de valider un Sider, de la plus autonome à la plus encadrée.</p>
+
+    <div class="path">
+      <div class="line"></div>
+      <div class="steps">
+        <button class="st on" onclick="setStep(0)">
+          <span class="dot"><svg viewBox="0 0 24 24"><path d='M20 7L9 18l-5-5'/></svg></span>
+          <b>Auto-évaluation</b>
+        </button>
+        <button class="st" onclick="setStep(1)">
+          <span class="dot"><svg viewBox="0 0 24 24"><circle cx='12' cy='12' r='9'/><path d='M9.4 9.2a2.7 2.7 0 1 1 3.4 3.2c-.5.2-.8.7-.8 1.2v.4'/><path d='M12 17.2h.01'/></svg></span>
+          <b>Quiz</b>
+        </button>
+        <button class="st" onclick="setStep(2)">
+          <span class="dot"><svg viewBox="0 0 24 24"><path d='M3 17l5-6 4 3 6-8'/><path d='M15 6h4v4'/></svg></span>
+          <b>Compétition</b>
+        </button>
+        <button class="st" onclick="setStep(3)">
+          <span class="dot"><svg viewBox="0 0 24 24"><path d='M4 19V6l7 4 7-4v13'/><circle cx='18' cy='6' r='2'/></svg></span>
+          <b>Coach certifié</b>
+        </button>
+        <button class="st" onclick="setStep(4)">
+          <span class="dot"><svg viewBox="0 0 24 24"><circle cx='9' cy='8' r='3'/><circle cx='16.5' cy='9.5' r='2.4'/><path d='M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5M16 15c3 0 5 1.7 5 5'/></svg></span>
+          <b>Ton cercle</b>
+        </button>
+        <button class="st" onclick="setStep(5)">
+          <span class="dot"><svg viewBox="0 0 24 24"><circle cx='12' cy='12' r='8.5'/><path d='M12 3.5v17M3.5 12h17M5.6 6a11 11 0 0 0 12.8 12M18.4 6A11 11 0 0 1 5.6 18'/></svg></span>
+          <b>Combine</b>
+        </button>
+      </div>
+      <div class="panel">
+        <h3 id="stT">Auto-évaluation</h3>
+        <p id="stD">Tu relèves le défi et tu déclares l'avoir réussi.<br>Notre IA t'accompagne et certifie tes compétences (bientôt).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="t">Tu es</h2>
+    <div class="who">
+      <div class="p">
+        <div class="ph"><img src="img/joueur.jpg" alt="Jeune joueur de basket en action lors d'un match" loading="lazy"></div>
+        <div class="tx"><b>Tu joues</b></div>
+      </div>
+      <div class="p">
+        <div class="ph"><img src="img/coach.jpg" alt="Coach donnant ses consignes à son équipe en cercle" loading="lazy"></div>
+        <div class="tx"><b>Tu entraînes</b></div>
+      </div>
+      <div class="p">
+        <div class="ph"><img src="img/dirigeant.jpg" alt="Dirigeant de club au travail sur ses données" loading="lazy"></div>
+        <div class="tx"><b>Tu diriges</b></div>
+      </div>
+      <div class="p">
+        <div class="ph"><img src="img/parent.jpg" alt="Adulte accompagnant une jeune sportive à l'entraînement" loading="lazy"></div>
+        <div class="tx"><b>Tu accompagnes</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" style="margin-top:60px">
+    <h2>Gratuit pour tout le monde.<br>Joueurs, coachs, dirigeants, parents.</h2>
+    <p>Progresser ne devrait jamais dépendre d'un budget.<br>Le suivi, l'évaluation et la progression sont gratuits pour tous.<br>Les formules ajoutent de la précision, pas de l'accès.</p>
+  </div>
+
+  <section class="sec">
+    <h2 class="t">Tes questions</h2>
+    <div class="qa">
+      <div class="tabs">
+        <button class="tb on" onclick="setQ(0)">C'est vraiment gratuit ?</button>
+        <button class="tb" onclick="setQ(1)">Mes données me suivent ?</button>
+        <button class="tb" onclick="setQ(2)">Qui voit mes statistiques ?</button>
+        <button class="tb" onclick="setQ(3)">Une autre question ?</button>
+      </div>
+      <div class="qp">
+        <div class="qc on" id="q0">
+          <h3>C'est vraiment gratuit ?</h3>
+          <p>Oui. Les formules servent à atteindre des objectifs plus précis, ou plus vite. Et ton activité te fait gagner des services.</p>
+        </div>
+        <div class="qc" id="q1">
+          <h3>Mes données me suivent si je change de club ou de sport ?</h3>
+          <p>Tout t'appartient, et tu peux le transmettre à qui tu veux. Ta progression ne repart jamais de zéro.</p>
+        </div>
+        <div class="qc" id="q2">
+          <h3>Les autres voient-ils mes statistiques ?</h3>
+          <p>Uniquement ceux que tu acceptes, un par un. Tu choisis qui te suit et à qui tu te compares.</p>
+        </div>
+        <div class="qc" id="q3">
+          <h3>Une autre question ?</h3>
+          <p>Ton sport, ton club, ton niveau : écris-nous, on te répond.</p>
+          <form class="af" onsubmit="return false">
+            <div class="row">
+              <input type="text" placeholder="Prénom" aria-label="Prénom">
+              <input type="text" placeholder="Nom" aria-label="Nom">
+            </div>
+            <div class="row">
+              <input type="text" placeholder="Sport" aria-label="Sport">
+              <input type="text" placeholder="Club" aria-label="Club">
+            </div>
+            <input type="email" placeholder="Ton adresse email" aria-label="Ton adresse email">
+            <textarea rows="3" placeholder="Ta question" aria-label="Ta question"></textarea>
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="close">
+    <p>L'aventure a déjà commencé. <span style="color:var(--accent)">Rejoins-la</span>.</p>
+    <div class="ctas">
+      <a class="go" href="https://pro.sportsiders.app/" target="_blank" rel="noopener">Trouve ton équipe</a>
+      <a class="cta2" href="https://sportsiders-pro-demo.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.4"/><path d="M10 8.6l6 3.4-6 3.4z"/></svg>
+        Voir la démo
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>sportsiders.app</span>
+  </footer>
+
+</div>
+<script>
+  function setQ(i){
+    for(var k=0;k<4;k++){
+      document.getElementById('q'+k).className='qc'+(k===i?' on':'');
+    }
+    var t=document.querySelectorAll('.tb');
+    for(var k=0;k<t.length;k++) t[k].className='tb'+(k===i?' on':'');
+  }
+  var STEPS=[
+    ["Auto-évaluation","Tu relèves le défi et tu déclares l'avoir réussi.<br>Notre IA t'accompagne et certifie tes compétences (bientôt)."],
+    ["Quiz","Règles, arbitrage, lecture des systèmes : certaines compétences se valident par la réponse juste plutôt que par le geste."],
+    ["Compétition","Match ou tournoi : la feuille officielle est lue par notre IA et valide seule certaines compétences. Le jeu fait foi."],
+    ["Coach certifié","À l'entraînement, en workout ou en stage, un coach habilité valide ce qu'il observe — et te propose les Siders à travailler."],
+    ["Ton cercle","Un ami, un coéquipier, un adversaire qui a déjà validé ce Sider confirme ta réussite. Celui qui sait transmet à celui qui apprend."],
+    ["Combine","Session d'évaluation régulière avec notre protocole :<br>tests physiques, adresse, maniement.<br>Au sein des clubs ou lors de nos événements."]
+  ];
+  function setStep(i){
+    document.getElementById('stT').textContent=STEPS[i][0];
+    document.getElementById('stD').innerHTML=STEPS[i][1];
+    var b=document.querySelectorAll('.st');
+    for(var k=0;k<b.length;k++) b[k].className='st'+(k===i?' on':'');
+  }
+
+  var FAQ=[
+    "Oui. Les formules servent à atteindre des objectifs plus précis, ou plus vite. Et ton activité te fait gagner des services.",
+    "Tout t'appartient, et tu peux le transmettre à qui tu veux. Ta progression ne repart jamais de zéro.",
+    "Uniquement ceux que tu acceptes, un par un. Tu choisis qui te suit et à qui tu te compares."
+  ];
+  function setFaq(i){
+    var ans=document.getElementById('fAns'), frm=document.getElementById('fForm');
+    if(i===3){ ans.hidden=true; frm.hidden=false; }
+    else { frm.hidden=true; ans.hidden=false; ans.innerHTML='<p>'+FAQ[i]+'</p>'; }
+    var b=document.querySelectorAll('.tb');
+    for(var k=0;k<b.length;k++) b[k].className='tb'+(k===i?' on':'');
+  }
+</script>
+</body>
+</html>
